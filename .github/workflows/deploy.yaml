@@ -30,7 +30,7 @@ jobs:
           aws-region: eu-central-1
       - run: aws --version
       - name: Test
-        run: npm run Test
+        run: npm test
       - name: Synthesize CDK app
         run: cdk synth
   
