@@ -25,6 +25,7 @@ jobs:
       - name: Install dependencies
         run: npm install
              nmp install -g aws-cdk
+             nmp install -g jest
             
              
 
