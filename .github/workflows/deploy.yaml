@@ -24,9 +24,9 @@ jobs:
 
       - name: Install dependencies
         run: npm install
-             nmp install -g aws-cdk
-             nmp install -g jest
-             nmp install -g ts-jest
+             npm install -g aws-cdk
+            
+             npm install --global jest ts-jest typescript
             
              
 
