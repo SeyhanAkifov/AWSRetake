@@ -25,8 +25,8 @@ jobs:
       - name: Install dependencies
         run: npm install
              nmp install -g aws-cdk
-             npm install -g jest
-             cdk synth
+            
+             
 
     
       - name: Configure AWS credentials
