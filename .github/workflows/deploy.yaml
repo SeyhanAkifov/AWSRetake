@@ -26,6 +26,7 @@ jobs:
         run: npm install
              nmp install -g aws-cdk
              nmp install -g jest
+             nmp install -g ts-jest
             
              
 
