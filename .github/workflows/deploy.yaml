@@ -42,5 +42,5 @@ jobs:
         run: npm test
       - name: Synthesize CDK app
         run: cdk synth
-        run: cdk deploy
+             cdk deploy
   
