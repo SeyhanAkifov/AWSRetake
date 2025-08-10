@@ -785,6 +785,7 @@ exports[`Snapshot test for RetakeStack 1`] = `
             "AttributeType": "S",
           },
         ],
+        "BillingMode": "PAY_PER_REQUEST",
         "KeySchema": [
           {
             "AttributeName": "PK",
@@ -795,10 +796,6 @@ exports[`Snapshot test for RetakeStack 1`] = `
             "KeyType": "RANGE",
           },
         ],
-        "ProvisionedThroughput": {
-          "ReadCapacityUnits": 5,
-          "WriteCapacityUnits": 5,
-        },
       },
       "Type": "AWS::DynamoDB::Table",
       "UpdateReplacePolicy": "Delete",
@@ -826,7 +823,7 @@ exports[`Snapshot test for RetakeStack 1`] = `
           "S3Bucket": {
             "Fn::Sub": "cdk-hnb659fds-assets-\${AWS::AccountId}-\${AWS::Region}",
           },
-          "S3Key": "91f0084b42836b41476904c8eca0c552446ddf44fcdedcd7d2d27b6d7546bbfc.zip",
+          "S3Key": "b87298dbf02316127ffba02b03c2ca5628fca2c30ea4f3fc3ab789e7717039df.zip",
         },
         "Environment": {
           "Variables": {
