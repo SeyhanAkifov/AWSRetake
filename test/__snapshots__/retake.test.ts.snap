@@ -1,44 +1,5 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Snapshot test for ExamStack 1`] = `
-{
-  "Parameters": {
-    "BootstrapVersion": {
-      "Default": "/cdk-bootstrap/hnb659fds/version",
-      "Description": "Version of the CDK Bootstrap resources in this environment, automatically retrieved from SSM Parameter Store. [cdk:skip]",
-      "Type": "AWS::SSM::Parameter::Value<String>",
-    },
-  },
-  "Rules": {
-    "CheckBootstrapVersion": {
-      "Assertions": [
-        {
-          "Assert": {
-            "Fn::Not": [
-              {
-                "Fn::Contains": [
-                  [
-                    "1",
-                    "2",
-                    "3",
-                    "4",
-                    "5",
-                  ],
-                  {
-                    "Ref": "BootstrapVersion",
-                  },
-                ],
-              },
-            ],
-          },
-          "AssertDescription": "CDK bootstrap stack version 6 required. Please run 'cdk bootstrap' with a recent version of the CDK CLI.",
-        },
-      ],
-    },
-  },
-}
-`;
-
 exports[`Snapshot test for RetakeStack 1`] = `
 {
   "Mappings": {
@@ -501,7 +462,7 @@ exports[`Snapshot test for RetakeStack 1`] = `
           },
         ],
         "SourceObjectKeys": [
-          "c613db0234e580f9efd406b31a43a2d33bf6335d7ad66e64bb7d092aab040a89.zip",
+          "2161fac96679aabe1559da97c9efd700f23bd7f8a4df77388614ba3c888d5a40.zip",
         ],
       },
       "Type": "Custom::CDKBucketDeployment",
@@ -562,7 +523,7 @@ exports[`Snapshot test for RetakeStack 1`] = `
       "Type": "AWS::IAM::Role",
       "UpdateReplacePolicy": "Retain",
     },
-    "FavoriteCatApiDeploymentBF0973DEae2e8699876b271cba279d5383a5d4bf": {
+    "FavoriteCatApiDeploymentBF0973DE333853cfe899609ef1bce633af1e7c22": {
       "DependsOn": [
         "FavoriteCatApiOPTIONSE42A7584",
         "FavoriteCatApisaveCatOPTIONS5C7DFC39",
@@ -586,7 +547,7 @@ exports[`Snapshot test for RetakeStack 1`] = `
       ],
       "Properties": {
         "DeploymentId": {
-          "Ref": "FavoriteCatApiDeploymentBF0973DEae2e8699876b271cba279d5383a5d4bf",
+          "Ref": "FavoriteCatApiDeploymentBF0973DE333853cfe899609ef1bce633af1e7c22",
         },
         "RestApiId": {
           "Ref": "FavoriteCatApi8162E98C",
@@ -715,7 +676,7 @@ exports[`Snapshot test for RetakeStack 1`] = `
                 ":lambda:path/2015-03-31/functions/",
                 {
                   "Fn::GetAtt": [
-                    "SaveCatFunctionB1E6A7E2",
+                    "PostTableFunction2974B7CD",
                     "Arn",
                   ],
                 },
@@ -738,7 +699,7 @@ exports[`Snapshot test for RetakeStack 1`] = `
         "Action": "lambda:InvokeFunction",
         "FunctionName": {
           "Fn::GetAtt": [
-            "SaveCatFunctionB1E6A7E2",
+            "PostTableFunction2974B7CD",
             "Arn",
           ],
         },
@@ -779,7 +740,7 @@ exports[`Snapshot test for RetakeStack 1`] = `
         "Action": "lambda:InvokeFunction",
         "FunctionName": {
           "Fn::GetAtt": [
-            "SaveCatFunctionB1E6A7E2",
+            "PostTableFunction2974B7CD",
             "Arn",
           ],
         },
@@ -855,17 +816,17 @@ exports[`Snapshot test for RetakeStack 1`] = `
       },
       "Type": "AWS::SNS::Subscription",
     },
-    "SaveCatFunctionB1E6A7E2": {
+    "PostTableFunction2974B7CD": {
       "DependsOn": [
-        "SaveCatFunctionServiceRoleDefaultPolicyFE3ED58F",
-        "SaveCatFunctionServiceRole28ADBD2A",
+        "PostTableFunctionServiceRoleDefaultPolicy8E8734FB",
+        "PostTableFunctionServiceRoleC1E44881",
       ],
       "Properties": {
         "Code": {
           "S3Bucket": {
             "Fn::Sub": "cdk-hnb659fds-assets-\${AWS::AccountId}-\${AWS::Region}",
           },
-          "S3Key": "178c981c8473c284c6746fa97dedc56562006c38cff2960d8fb60a4cbd5b5f4f.zip",
+          "S3Key": "91f0084b42836b41476904c8eca0c552446ddf44fcdedcd7d2d27b6d7546bbfc.zip",
         },
         "Environment": {
           "Variables": {
@@ -877,18 +838,18 @@ exports[`Snapshot test for RetakeStack 1`] = `
             },
           },
         },
-        "Handler": "saveCat.handler",
+        "Handler": "index.handler",
         "Role": {
           "Fn::GetAtt": [
-            "SaveCatFunctionServiceRole28ADBD2A",
+            "PostTableFunctionServiceRoleC1E44881",
             "Arn",
           ],
         },
-        "Runtime": "nodejs18.x",
+        "Runtime": "nodejs20.x",
       },
       "Type": "AWS::Lambda::Function",
     },
-    "SaveCatFunctionServiceRole28ADBD2A": {
+    "PostTableFunctionServiceRoleC1E44881": {
       "Properties": {
         "AssumeRolePolicyDocument": {
           "Statement": [
@@ -919,7 +880,7 @@ exports[`Snapshot test for RetakeStack 1`] = `
       },
       "Type": "AWS::IAM::Role",
     },
-    "SaveCatFunctionServiceRoleDefaultPolicyFE3ED58F": {
+    "PostTableFunctionServiceRoleDefaultPolicy8E8734FB": {
       "Properties": {
         "PolicyDocument": {
           "Statement": [
@@ -961,10 +922,10 @@ exports[`Snapshot test for RetakeStack 1`] = `
           ],
           "Version": "2012-10-17",
         },
-        "PolicyName": "SaveCatFunctionServiceRoleDefaultPolicyFE3ED58F",
+        "PolicyName": "PostTableFunctionServiceRoleDefaultPolicy8E8734FB",
         "Roles": [
           {
-            "Ref": "SaveCatFunctionServiceRole28ADBD2A",
+            "Ref": "PostTableFunctionServiceRoleC1E44881",
           },
         ],
       },
