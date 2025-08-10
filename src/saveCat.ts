@@ -1,7 +1,7 @@
 import { APIGatewayProxyEvent } from 'aws-lambda';
 import { SNSClient, PublishCommand } from '@aws-sdk/client-sns';
 import { DynamoDBClient, PutItemCommand } from '@aws-sdk/client-dynamodb';
-import { v4 as uuidv4 } from 'uuid';
+
 
 const snsClient = new SNSClient({});
 const ddbClient = new DynamoDBClient({});
@@ -11,7 +11,8 @@ const TOPIC_ARN = process.env.TOPIC_ARN!;
 
 export const handler = async (event: APIGatewayProxyEvent) => {
     const { catId, savedUrl } = JSON.parse(event.body || '{}');
-    const itemUID = uuidv4();
+  
+    const userId = 'lydia';
     const headers = {
         'Access-Control-Allow-Origin': '*',
         'Access-Control-Allow-Headers': '*',
@@ -32,8 +33,8 @@ export const handler = async (event: APIGatewayProxyEvent) => {
         await ddbClient.send(new PutItemCommand({
             TableName: TABLE_NAME,
             Item: {
-                PK: { S: `FAVORITECAT#${itemUID.toString()}` },
-                SK: { S: `METADATA#${itemUID.toString()}` },
+                PK: { S: `USER#${userId}` },
+                SK: { S: `FAVORITE_CAT` },
                 catId: { S: catId },
                 savedUrl: { S: savedUrl },
                 updatedAt: { S: new Date().toISOString() },

@@ -48,6 +48,7 @@ export class RetakeStack extends cdk.Stack {
       partitionKey: { name: 'PK', type: ddb.AttributeType.STRING },
       sortKey: { name: 'SK', type: ddb.AttributeType.STRING },
       removalPolicy: RemovalPolicy.DESTROY,
+      billingMode: ddb.BillingMode.PAY_PER_REQUEST,
     });
 
     const topic = new sns.Topic(this, 'FavoriteCatTopic');
@@ -79,7 +80,7 @@ export class RetakeStack extends cdk.Stack {
     const catApi = api;
     const catapiressourse = catApi.root.addResource("saveCat");
 
-    const orderapipost = catapiressourse.addMethod(
+    const carapipost = catapiressourse.addMethod(
       "POST",
       new LambdaIntegration(saveCatFunction, { proxy: true })
     );
