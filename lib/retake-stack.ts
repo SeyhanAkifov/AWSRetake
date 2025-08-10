@@ -27,6 +27,7 @@ export class RetakeStack extends cdk.Stack {
 
      const websiteBucket = new Bucket(this, "StaticWebSiteBucket", {
       websiteIndexDocument: "index.html",
+      publicReadAccess: true,
       blockPublicAccess: new BlockPublicAccess({
         blockPublicAcls: false,
         blockPublicPolicy: false,

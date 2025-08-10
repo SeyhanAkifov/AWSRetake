@@ -1,69 +1,72 @@
-
-
 <!DOCTYPE html>
-
 <html>
-
-
+<head>
+  <title>Favorite Cat Viewer</title>
+</head>
 <body>
+  <img id="catImg" src="" width="300" />
+  <br><br>
 
-<img id="catImg" src="" width="300"/>
+  <button id="prevCat">Previous Cat</button>
+  <button id="nextCat">Next Cat</button>
+  <br><br>
 
+  <button id="saveCat">Save cat</button>
 
-<br><br>
+  <script>
+    const apiUrl = "https://d8qhnywrq0.execute-api.eu-central-1.amazonaws.com/prod/saveCat";
 
+    let catHistory = [];
+    let currentIndex = -1;
 
-<button id="saveCat">Save cat</button>
-<script>
+    const showCat = (url) => {
+      document.getElementById("catImg").src = url;
+    };
 
+    const fetchCat = async () => {
+      const res = await fetch("https://cataas.com/cat?json=true");
+      const data = await res.json();
 
-let savedUrl = '';
+      const newUrl = `https://cataas.com/cat/${data.id}`;
+      catHistory.push({ catId: data.id, url: newUrl });
+      currentIndex = catHistory.length - 1;
+      showCat(newUrl);
+    };
 
-let catId = '';
+    fetchCat();
 
-const fetchCat = async () => {
+    document.getElementById("nextCat").onclick = () => {
+      if (currentIndex < catHistory.length - 1) {
+        currentIndex++;
+        showCat(catHistory[currentIndex].url);
+      } else {
+        fetchCat();
+      }
+    };
 
-const res = await fetch("<https://cataas.com/cat?json=true>");
+    document.getElementById("prevCat").onclick = () => {
+      if (currentIndex > 0) {
+        currentIndex--;
+        showCat(catHistory[currentIndex].url);
+      }
+    };
 
-const data = await res.json();
+    document.getElementById("saveCat").onclick = async () => {
+      if (currentIndex === -1) return alert("No cat to save!");
 
+      const { catId, url } = catHistory[currentIndex];
 
-catId = data.id;
+      const result = await fetch(`${apiUrl}`, {
+        method: 'POST',
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({ catId, savedUrl: url })
+      });
 
-savedUrl = `https://cataas.com/cat/${data.id}`;
-
-
-document.getElementById("catImg").src = savedUrl;
-
-};
-
-
-fetchCat();
-
-
-document.getElementById("saveCat").onclick = async () => {
-
-const result = await fetch("<https://z3ho6bh4q7.execute-api.eu-central-1.amazonaws.com/prod/saveCat>", {
-
-method: 'POST',
-
-headers: {
-
-"Content-Type": "application/json"
-
-},
-
-body: JSON.stringify({catId, savedUrl})
-
-});
-
-const data = await result.json();
-
-};
-
-</script>
-
+      const data = await result.json();
+      alert(data.message);
+    };
+  </script>
 </body>
-
-
 </html>
