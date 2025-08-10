@@ -1,8 +1,8 @@
 {
-  "name": "exam",
+  "name": "retake",
   "version": "0.1.0",
   "bin": {
-    "exam": "bin/exam.js"
+    "retake": "bin/retake.js"
   },
   "scripts": {
     "build": "tsc",
