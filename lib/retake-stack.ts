@@ -4,7 +4,7 @@ import * as cloudfront from "aws-cdk-lib/aws-cloudfront";
 import { BlockPublicAccess, Bucket } from "aws-cdk-lib/aws-s3";
 import * as origins from "aws-cdk-lib/aws-cloudfront-origins";
 import { RemovalPolicy, aws_s3 as s3, aws_s3_deployment as s3deploy, aws_lambda as lambda, aws_apigateway as apigateway, aws_dynamodb as ddb, aws_sns as sns, aws_sns_subscriptions as subs } from 'aws-cdk-lib';
-import { LambdaIntegration, RestApi } from "aws-cdk-lib/aws-apigateway";
+import { LambdaIntegration} from "aws-cdk-lib/aws-apigateway";
 import { NodejsFunction } from 'aws-cdk-lib/aws-lambda-nodejs';
 import * as path from "path";
 import { Runtime } from 'aws-cdk-lib/aws-lambda';
