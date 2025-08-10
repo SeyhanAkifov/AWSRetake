@@ -1,17 +1,11 @@
-// import * as cdk from 'aws-cdk-lib';
-// import { Template } from 'aws-cdk-lib/assertions';
-// import * as Retake from '../lib/retake-stack';
+import * as cdk from 'aws-cdk-lib';
+import { RetakeStack } from '../lib/retake-stack';
 
-// example test. To run these tests, uncomment this file along with the
-// example resource in lib/retake-stack.ts
-test('SQS Queue Created', () => {
-//   const app = new cdk.App();
-//     // WHEN
-//   const stack = new Retake.RetakeStack(app, 'MyTestStack');
-//     // THEN
-//   const template = Template.fromStack(stack);
+test('Snapshot test for RetakeStack', () => {
+  const app = new cdk.App();
+  const stack = new RetakeStack(app, 'RetakeStack');
 
-//   template.hasResourceProperties('AWS::SQS::Queue', {
-//     VisibilityTimeout: 300
-//   });
+  const template = cdk.assertions.Template.fromStack(stack);
+
+  expect(template.toJSON()).toMatchSnapshot();
 });

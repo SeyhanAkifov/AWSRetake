@@ -1,0 +1,69 @@
+
+
+<!DOCTYPE html>
+
+<html>
+
+
+<body>
+
+<img id="catImg" src="" width="300"/>
+
+
+<br><br>
+
+
+<button id="saveCat">Save cat</button>
+<script>
+
+
+let savedUrl = '';
+
+let catId = '';
+
+const fetchCat = async () => {
+
+const res = await fetch("<https://cataas.com/cat?json=true>");
+
+const data = await res.json();
+
+
+catId = data.id;
+
+savedUrl = `https://cataas.com/cat/${data.id}`;
+
+
+document.getElementById("catImg").src = savedUrl;
+
+};
+
+
+fetchCat();
+
+
+document.getElementById("saveCat").onclick = async () => {
+
+const result = await fetch("<https://z3ho6bh4q7.execute-api.eu-central-1.amazonaws.com/prod/saveCat>", {
+
+method: 'POST',
+
+headers: {
+
+"Content-Type": "application/json"
+
+},
+
+body: JSON.stringify({catId, savedUrl})
+
+});
+
+const data = await result.json();
+
+};
+
+</script>
+
+</body>
+
+
+</html>
